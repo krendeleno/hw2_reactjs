@@ -24,3 +24,21 @@
     color: var(--accent-color);
 }
 
+@media (max-width: 320px) {
+    .footer {
+        width: 100%;
+    }
+
+    .footerContent {
+        flex-direction: column;
+        padding: 12px;
+        align-items: flex-start;
+        justify-content: center;
+        gap: 1rem;
+    }
+
+    .credentials p {
+        margin: 0;
+    }
+
+}

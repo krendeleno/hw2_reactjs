@@ -78,3 +78,54 @@
     flex-direction: row;
     gap: 1rem;
 }
+
+@media (max-width: 320px) {
+    .build {
+        display: grid;
+        grid-template-columns: 24px auto;
+        grid-template-rows: 1fr auto;
+    }
+    .buildDetails  {
+        margin: 0.2rem 0 0.5rem;
+        padding: 0.2rem 0 0;
+        width: auto;
+        grid-column: 2;
+        grid-row: 2;
+        flex-direction: row;
+        border-top: var(--default-color) solid 1px;
+        justify-content: start;
+    }
+
+    .build > svg {
+        grid-column: 1;
+        grid-row: 1 / 2;
+    }
+
+    .buildUpInfo {
+        flex-direction: column !important;
+        align-items: start !important;
+    }
+
+    .buildLowInfo {
+        flex-wrap: wrap;
+        flex-direction: row;
+    }
+
+    .buildAuthorContainer {
+        flex-grow: 1;
+    }
+
+    .buildButtons {
+        gap: 0.5rem;
+    }
+
+    /*.buildLowInfo {*/
+    /*    display: grid !important;*/
+    /*    grid-template-rows: 1fr 1fr;*/
+    /*    grid-template-columns: 1fr 1fr;*/
+    /*}*/
+
+    /*.buildAuthorContainer {*/
+    /*    grid-column: 1 / 3;*/
+    /*}*/
+}

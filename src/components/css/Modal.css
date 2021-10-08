@@ -5,7 +5,7 @@
     right: 0;
     top: 0;
     bottom: 0;
-    background-color: rgba(0,0,0,0.5);
+    background-color: rgba(0, 0, 0, 0.5);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -32,4 +32,10 @@
 .modalContent p {
     font-weight: normal;
     font-size: var(--small-text);
+}
+
+@media (max-width: 320px) {
+    .modalContent {
+        width: auto;
+    }
 }

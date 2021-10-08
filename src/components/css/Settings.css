@@ -35,7 +35,31 @@ input {
     color: var(--accent-color)
 }
 
+.description {
+    margin-bottom: 1.5rem;
+}
+
 input[name = "sync"] {
     margin: 0.3rem 0.5rem 1rem;
     width: 50px;
+}
+
+@media (max-width: 320px) {
+    .forms {
+        width: auto;
+    }
+
+    .settingsButtons {
+        flex-direction: column;
+    }
+
+    .settingsButtons button {
+        width: 100%;
+    }
+
+    .settingsButtons button p {
+        text-align: center;
+        margin: auto;
+    }
+
 }
