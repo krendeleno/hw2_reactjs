@@ -1,0 +1,15 @@
+.config {
+    margin: auto;
+    width: 264px;
+    font-size: var(--small-text);
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.config button {
+    padding: 10px 20px;
+    width: fit-content;
+}

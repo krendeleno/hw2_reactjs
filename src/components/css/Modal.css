@@ -1,0 +1,35 @@
+
+.modal {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: var(--z-modal);
+}
+
+.modalContent {
+    box-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 15px;
+    width: 485px;
+    background-color: #fff;
+}
+
+.modal h1 {
+    font-weight: bold;
+    font-size: var(--big-middle-text);
+}
+
+.modalContent p {
+    font-weight: normal;
+    font-size: var(--small-text);
+}

@@ -1,0 +1,47 @@
+
+button {
+    padding: 7px 15px;
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+    align-items: center;
+    width: fit-content;
+    border-radius: 4px;
+    text-decoration: none;
+    border: rgba(0,0,0,0) 2px solid;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+button.default {
+    background: var(--default-color);
+    font-size: var(--small-text);
+}
+
+button.colored {
+    background: var(--action-color);
+}
+
+button * {
+    margin: 0;
+}
+
+button:disabled p{
+    opacity: .5;
+}
+
+
+button.default:focus {
+    border: var(--border-default-color) solid 2px;
+}
+
+button.colored:focus {
+    border: var(--border-color) solid 2px;
+}
+
+button:disabled {
+    background: var(--disabled-color);
+    border: rgba(0,0,0,0) 2px solid !important;
+}
