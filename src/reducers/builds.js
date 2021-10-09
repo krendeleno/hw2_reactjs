@@ -1,11 +1,13 @@
 function buildsReducer(state = [], action) {
     switch (action.type) {
         case 'ADD':
+            let res = [...state];
             if (action.payload.length > 1)
-                state.push(...action.payload);
-            else
-                state.unshift(action.payload);
-            return state;
+                res.push(...action.payload);
+            else {
+                res.unshift(action.payload);
+            }
+            return res;
         case 'CLEAR_ALL':
             return [];
         default:

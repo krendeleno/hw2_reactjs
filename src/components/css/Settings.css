@@ -6,9 +6,9 @@ form {
 input {
     border-radius: 4px;
     border: #D9D9D9 2px solid;
-    margin-bottom: 1rem;
-    margin-top: 0.3rem;
     padding: 7px;
+    box-sizing: border-box;
+    width: calc(100% - 1.6px);
 }
 
 .settingsButtons {
@@ -47,6 +47,51 @@ input[name = "sync"] {
     margin: 0.3rem 0.5rem 1rem;
     width: 50px;
 }
+
+.search-wrapper {
+    margin-bottom: 1rem;
+    margin-top: 0.3rem;
+}
+
+.search-box,.close-icon,.search-wrapper {
+    position: relative;
+
+}
+button[type="reset"] {
+    padding: 0;
+    margin: 0;
+}
+
+
+.close-icon {
+    border:1px solid transparent;
+    background-color: transparent;
+    display: inline-block;
+    vertical-align: middle;
+    outline: 0;
+    cursor: pointer;
+}
+.close-icon:after {
+    content: "X";
+    display: block;
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    background-color: var(--default-color);
+    z-index:1;
+    right: 10px;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    padding: 2px;
+    border-radius: 50%;
+    text-align: center;
+    color: white;
+    font-weight: normal;
+    font-size: var(--small-text);
+    cursor: pointer;
+}
+
 
 @media (max-width: 320px) {
     .forms {
