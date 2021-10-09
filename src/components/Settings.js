@@ -22,8 +22,8 @@ function Settings() {
     }
 
     const handleSubmit = (event) => {
-        setError(false);
         event.preventDefault();
+        setError(false);
         setDisabled(true);
         // Имитация клонирования, поэтому задержка
         try {
