@@ -37,5 +37,6 @@
 @media (max-width: 320px) {
     .modalContent {
         width: auto;
+        margin: 0 16px;
     }
 }

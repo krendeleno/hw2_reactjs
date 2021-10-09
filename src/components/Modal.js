@@ -1,5 +1,6 @@
 import {useState} from 'react';
 import Button from './Button.js'
+import Input from './Input.js'
 import './css/Modal.css';
 
 
@@ -21,6 +22,10 @@ function Modal({show, onClose}) {
         setTimeout(onClose, 0);
     }
 
+    const doReset = (event) => {
+        const name = event.target.name;
+        setInputs(values => ({...values, [name]: ''}));
+    }
 
     if (!show)
         return null;
@@ -31,15 +36,8 @@ function Modal({show, onClose}) {
                 <h1>New build</h1>
                 <p>Enter the commit hash which you want to build.</p>
                 <form onSubmit={handleSubmit}>
-                    <input
-                        id="hash"
-                        type="search"
-                        name="hash"
-                        value={inputs.hash || ""}
-                        onChange={handleChange}
-                        placeholder="Commit hash"
-                        required
-                    />
+                    <Input handleChange={handleChange} doReset={doReset} name="hash" value={inputs.hash}
+                           placeholder="Commit hash" required ={true}/>
                     <div className="settingsButtons">
                         <Button buttonType="colored">
                             <p>Run build</p>

@@ -1,5 +1,6 @@
 import {useContext, useState} from 'react';
 import Button from './Button.js'
+import Input from './Input.js'
 import {Context} from "./GithubContext.js"
 import {useHistory} from 'react-router-dom';
 import MaskedInput from 'react-text-mask'
@@ -11,7 +12,7 @@ var mask = function (rawValue) {
 
 function Settings() {
     const history = useHistory();
-    const [setContext] = useContext(Context);
+    const [context, setContext] = useContext(Context);
     const [inputs, setInputs] = useState(Context);
     const [disabled, setDisabled] = useState(false);
     const [error, setError] = useState(false);
@@ -29,7 +30,7 @@ function Settings() {
         // Имитация клонирования, поэтому задержка
         try {
             setTimeout(() => {
-                setContext(inputs)
+                setContext(inputs);
                 setDisabled(false);
                 history.push('/')
             }, 1000);
@@ -48,6 +49,11 @@ function Settings() {
         })
         history.push('/');
     }
+
+    const doReset = (event) => {
+        const name = event.target.name;
+        setInputs(values => ({...values, [name]: ''}));
+    }
     // Для валидации форм я использую required, т.к. сейчас он поддерживается во всех браузерах и мне показалось,
     // что по смыслу задания этого достаточно, а для числовой формы react-text-mask
     return (
@@ -57,36 +63,17 @@ function Settings() {
 
             <form onSubmit={handleSubmit}>
                 <label htmlFor="github" className="required">Github repository</label>
-                <input
-                    id="github"
-                    type="search"
-                    name="github"
-                    value={inputs.github || ""}
-                    onChange={handleChange}
-                    placeholder="user-name/repo-name"
-                    required
-                />
+                <Input handleChange={handleChange} doReset={doReset} name="github" value={inputs.github}
+                       placeholder="user-name/repo-name" required={true}/>
+
                 <label htmlFor="build" className="required">Build command</label>
-                <input
-                    id="build"
-                    type="search"
-                    name="build"
-                    value={inputs.build || ""}
-                    onChange={handleChange}
-                    placeholder="Build command"
-                    required
-                />
+                <Input handleChange={handleChange} doReset={doReset} name="build" value={inputs.build}
+                       placeholder="Build command" required={true}/>
 
                 <label htmlFor="branch">Main branch</label>
-                <input
-                    id="branch"
-                    type="search"
-                    name="branch"
-                    value={inputs.branch || ""}
-                    onChange={handleChange}
-                    placeholder="Branch name"
+                <Input handleChange={handleChange} doReset={doReset} name="branch" value={inputs.branch}
+                       placeholder="Branch name" required={false}/>
 
-                />
 
                 <label htmlFor="sync">Synchronize every
                     <MaskedInput
@@ -96,6 +83,7 @@ function Settings() {
                         name="sync"
                         value={inputs.sync || ""}
                         onChange={handleChange}
+                        guide={false}
                     />
                     <span>
                             minutes
