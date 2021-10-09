@@ -24,14 +24,13 @@ const branches = ["master", "feature", "super-cool-ui-kit"]
 const messages = ["some fix", "upgrade ts to 3.8", "improved accessibility"]
 const nanoid = customAlphabet('1234567890abcdef', 8)
 
-// Сюда можно передать хэш и ветку, т.к. в Settings есть ветка, наверное, коммиты все должны с нее подгружаться.
-// Хэш можно указать в модальном окне run build, но сейчас эта функция не реализована
+// Сюда можно передать ветку, т.к. в Settings есть ветка, наверное, коммиты все должны с нее подгружаться.
 
-function RandomBuild(branch, hash) {
+function RandomBuild(branch) {
     this.status = statuses[Math.floor(Math.random() * statuses.length)];
     this.branch = branch || branches[Math.floor(Math.random() * branches.length)];
     this.author = authors[Math.floor(Math.random() * authors.length)];
-    this.hash = hash || nanoid();
+    this.hash = nanoid();
     this.message = messages[Math.floor(Math.random() * messages.length)];
     this.time = `${getRandomInt(23)} ч ${getRandomInt(59)} мин`;
     this.date = randomDate(new Date(2021, 0, 1), new Date());

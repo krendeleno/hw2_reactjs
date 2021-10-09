@@ -11,7 +11,8 @@ var mask = function (rawValue) {
 
 function Settings() {
     const history = useHistory();
-    const [inputs, setInputs] = useContext(Context);
+    const [setContext] = useContext(Context);
+    const [inputs, setInputs] = useState(Context);
     const [disabled, setDisabled] = useState(false);
     const [error, setError] = useState(false);
 
@@ -28,6 +29,7 @@ function Settings() {
         // Имитация клонирования, поэтому задержка
         try {
             setTimeout(() => {
+                setContext(inputs)
                 setDisabled(false);
                 history.push('/')
             }, 1000);
