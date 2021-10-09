@@ -32,8 +32,6 @@ code {
     --red: #FF3333;
     --yellow: #FF9A00;
     --z-modal: 1;
-
-    --breakpoint-mobile: 320px;
 }
 
 .wrapper {

@@ -39,6 +39,10 @@ input {
     margin-bottom: 1.5rem;
 }
 
+.errorMessage {
+    color: var(--red);
+}
+
 input[name = "sync"] {
     margin: 0.3rem 0.5rem 1rem;
     width: 50px;

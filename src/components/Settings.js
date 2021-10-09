@@ -13,7 +13,7 @@ function Settings() {
     const history = useHistory();
     const [inputs, setInputs] = useContext(Context);
     const [disabled, setDisabled] = useState(false);
-    // const [inputs, setInputs] = useState({});
+    const [error, setError] = useState(false);
 
     const handleChange = (event) => {
         const name = event.target.name;
@@ -22,6 +22,7 @@ function Settings() {
     }
 
     const handleSubmit = (event) => {
+        setError(false);
         event.preventDefault();
         setDisabled(true);
         // Имитация клонирования, поэтому задержка
@@ -31,6 +32,8 @@ function Settings() {
                 history.push('/')
             }, 1000);
         } catch (e) {
+            setDisabled(false);
+            setError(true);
         }
     }
 
@@ -43,6 +46,8 @@ function Settings() {
         })
         history.push('/');
     }
+    // Для валидации форм я использую required, т.к. сейчас он поддерживается во всех браузерах и мне показалось,
+    // что по смыслу задания этого достаточно, а для числовой формы react-text-mask
     return (
         <div className="forms">
             <p className="titleSettings">Settings</p>
@@ -93,6 +98,11 @@ function Settings() {
                             minutes
                             </span>
                 </label>
+
+                {error ?
+                    <p className="errorMessage"> Клонирование репозитория закончилось ошибкой, попробуйте еще раз! </p>
+                :
+                    <></>}
 
                 <div className="settingsButtons">
                     <Button buttonType="colored" disabled={disabled}>
