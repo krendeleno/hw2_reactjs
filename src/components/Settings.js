@@ -1,9 +1,10 @@
-import {useContext, useState} from 'react';
+import {useState} from 'react';
 import Button from './Button.js'
-import {Context} from "./GithubContext.js"
 import {useHistory} from 'react-router-dom';
 import MaskedInput from 'react-text-mask'
 import './css/Settings.css';
+import {set, clearAll} from '../actions'
+import {useDispatch} from "react-redux";
 
 var mask = function (rawValue) {
     return Array(rawValue.length).fill(/\d/);
@@ -11,7 +12,8 @@ var mask = function (rawValue) {
 
 function Settings() {
     const history = useHistory();
-    const [inputs, setInputs] = useContext(Context);
+    const dispatch = useDispatch();
+    const [inputs, setInputs] = useState(false);
     const [disabled, setDisabled] = useState(false);
     const [error, setError] = useState(false);
 
@@ -25,6 +27,11 @@ function Settings() {
         event.preventDefault();
         setError(false);
         setDisabled(true);
+
+        dispatch(set(inputs));
+        // Я отчищаю список билдов, чтобы при вводе новых настроек они генерировались заново
+        dispatch(clearAll())
+
         // Имитация клонирования, поэтому задержка
         try {
             setTimeout(() => {
@@ -102,7 +109,7 @@ function Settings() {
 
                 {error ?
                     <p className="errorMessage"> Клонирование репозитория закончилось ошибкой, попробуйте еще раз! </p>
-                :
+                    :
                     <></>}
 
                 <div className="settingsButtons">

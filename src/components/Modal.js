@@ -1,9 +1,19 @@
 import {useState} from 'react';
 import Button from './Button.js'
 import './css/Modal.css';
+import {useDispatch, useSelector} from "react-redux";
+import {add} from "../actions";
 
 
 function Modal({show, onClose}) {
+    const dispatch = useDispatch();
+    const settings = useSelector(state => state.settingsReducer = {
+        github: state.settingsReducer.github,
+        build: state.settingsReducer.build,
+        branch: state.settingsReducer.branch,
+        sync: state.settingsReducer.sync
+    })
+
     const [inputs, setInputs] = useState({hash: ''})
 
     const handleChange = (event) => {
@@ -14,10 +24,19 @@ function Modal({show, onClose}) {
 
 
     // Не очень понятно, что же нужно было сделать при нажатии на Run Build,
-    // потому что не надо было делать страницу ногово билда, поэтому я не делаю
-    // ничего, но на всякий случай храню состояние с хэшем
+    // но раз уж в редаксе это было легко, я сделала поставку билда в очередь
     const handleSubmit = (event) => {
         event.preventDefault();
+        dispatch(add({
+            status: "success",
+            branch: settings.branch || "my favourite branch",
+            author: "me",
+            hash: inputs.hash,
+            message: "first commit",
+            time: `0 ч 1 мин`,
+            date: new Date(),
+            number: 1000
+        }))
         setTimeout(onClose, 0);
     }
 
