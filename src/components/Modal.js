@@ -37,7 +37,7 @@ function Modal({show, onClose}) {
                         name="hash"
                         value={inputs.hash || ""}
                         onChange={handleChange}
-
+                        placeholder="Commit hash"
                         required
                     />
                     <div className="settingsButtons">

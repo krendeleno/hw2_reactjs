@@ -58,6 +58,10 @@ a:hover {
     color: #E00000;
 }
 
+::placeholder {
+    opacity: .2;
+}
+
 @media (max-width: 320px) {
     .wrapper {
         width: auto;

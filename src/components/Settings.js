@@ -61,7 +61,7 @@ function Settings() {
                     name="github"
                     value={inputs.github || ""}
                     onChange={handleChange}
-
+                    placeholder="user-name/repo-name"
                     required
                 />
                 <label htmlFor="build" className="required">Build command</label>
@@ -71,7 +71,7 @@ function Settings() {
                     name="build"
                     value={inputs.build || ""}
                     onChange={handleChange}
-
+                    placeholder="Build command"
                     required
                 />
 
@@ -82,6 +82,7 @@ function Settings() {
                     name="branch"
                     value={inputs.branch || ""}
                     onChange={handleChange}
+                    placeholder="Branch name"
 
                 />
 
