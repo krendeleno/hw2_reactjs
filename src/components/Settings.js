@@ -1,4 +1,4 @@
-import {useContext, useState} from 'react';
+import {useContext, useEffect, useState} from 'react';
 import Button from './Button.js'
 import Input from './Input.js'
 import {Context} from "./GithubContext.js"
@@ -10,7 +10,8 @@ var mask = function (rawValue) {
     return Array(rawValue.length).fill(/\d/);
 }
 
-function Settings() {
+function Settings({changeMeta, title, description}) {
+    useEffect(() => changeMeta(title, description), [])
     const history = useHistory();
     const [context, setContext] = useContext(Context);
     const [inputs, setInputs] = useState(Context);

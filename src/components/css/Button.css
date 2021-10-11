@@ -16,8 +16,16 @@ button {
     padding: 7px 10px;
 }
 
-button:hover {
+button:hover:enabled {
     cursor: pointer;
+}
+
+button.default:hover:enabled {
+    background: var(--hover-default-color);
+}
+
+button.colored:hover:enabled {
+    background: var(--hover-action-color);
 }
 
 button.default {

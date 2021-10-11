@@ -1,11 +1,29 @@
-import {useState} from 'react';
+import {useContext, useEffect, useState} from 'react';
 import Button from './Button.js'
 import Input from './Input.js'
+import {Context} from "./GithubContext.js"
 import './css/Modal.css';
 
 
 function Modal({show, onClose}) {
     const [inputs, setInputs] = useState({hash: ''})
+    const [disabled, setDisabled] = useState(false);
+    const [context, setContext] = useContext(Context);
+
+
+    // Следующие  2 функции нужны, чтобы модалка закрывалась на Esc
+    const closeEsc = (event) => {
+        if (event.charCode || event.keyCode === 27) {
+            setTimeout(onClose, 0);
+        }
+    }
+
+    useEffect(() => {
+        document.body.addEventListener("keydown", closeEsc)
+        return function cleanup() {
+            document.body.removeEventListener("keydown", closeEsc)
+        }
+    },[])
 
     const handleChange = (event) => {
         const name = event.target.name;
@@ -14,12 +32,27 @@ function Modal({show, onClose}) {
     }
 
 
-    // Не очень понятно, что же нужно было сделать при нажатии на Run Build,
-    // потому что не надо было делать страницу ногово билда, поэтому я не делаю
-    // ничего, но на всякий случай храню состояние с хэшем
     const handleSubmit = (event) => {
         event.preventDefault();
-        setTimeout(onClose, 0);
+        setDisabled(true);
+        // Имитация асинхронности, которую мы заслужили...
+        setTimeout(() => {
+                let newAddedBuilds = [{
+                    status: "success",
+                    branch: context.branch || "my favourite branch",
+                    author: "me",
+                    hash: inputs.hash,
+                    message: "first commit",
+                    time: `0 ч 1 мин`,
+                    date: new Date(),
+                    number: 1000
+                }, ...context.addedBuilds || []];
+                setContext(values => ({...values, addedBuilds: newAddedBuilds}));
+                setDisabled(false);
+                setTimeout(onClose, 0)
+            },
+            500
+        )
     }
 
     const doReset = (event) => {
@@ -37,12 +70,12 @@ function Modal({show, onClose}) {
                 <p>Enter the commit hash which you want to build.</p>
                 <form onSubmit={handleSubmit}>
                     <Input handleChange={handleChange} doReset={doReset} name="hash" value={inputs.hash}
-                           placeholder="Commit hash" required ={true}/>
+                           placeholder="Commit hash" required ={true} autofocus={input => input && input.focus()}/>
                     <div className="settingsButtons">
-                        <Button buttonType="colored">
+                        <Button buttonType="colored" disabled={disabled}>
                             <p>Run build</p>
                         </Button>
-                        <Button buttonType="default" action={onClose}>
+                        <Button buttonType="default" action={onClose} disabled={disabled}>
                             <p>Cancel</p>
                         </Button>
                     </div>

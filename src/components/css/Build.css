@@ -118,14 +118,4 @@
     .buildButtons {
         gap: 0.5rem;
     }
-
-    /*.buildLowInfo {*/
-    /*    display: grid !important;*/
-    /*    grid-template-rows: 1fr 1fr;*/
-    /*    grid-template-columns: 1fr 1fr;*/
-    /*}*/
-
-    /*.buildAuthorContainer {*/
-    /*    grid-column: 1 / 3;*/
-    /*}*/
 }

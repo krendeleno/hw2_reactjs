@@ -1,4 +1,4 @@
-import {useContext, useState} from 'react';
+import {useContext, useEffect, useState} from 'react';
 import Build from './Build.js'
 import {format} from 'date-fns'
 import {ru} from 'date-fns/locale'
@@ -38,8 +38,10 @@ function RandomBuild(branch) {
 }
 
 
-function BuildList() {
-    const [context] = useContext(Context);
+function BuildList({changeMeta, title, description}) {
+    useEffect(() => changeMeta(title, description), [])
+
+    const [context, setContext] = useContext(Context);
 
     function generateBuilds(n) {
         let res = [];
@@ -48,9 +50,15 @@ function BuildList() {
         return res.sort((a, b) => b.date - a.date);
     }
 
-    const [buildList] = useState(generateBuilds(20));
+    const [buildList, setBuildList] = useState([]);
     const [showMore, setShowMore] = useState(false);
 
+    useEffect(() => {
+        if (context.addedBuilds)
+            setBuildList(context.addedBuilds);
+        else
+            setContext(values => ({...values, addedBuilds: context.addedBuilds || generateBuilds(20)}));
+    }, [context.addedBuilds])
 
     const showMoreButtons = <>
         <Button buttonType="default" action={() => setShowMore(true)} show={!showMore}>

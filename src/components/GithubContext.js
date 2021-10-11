@@ -5,4 +5,5 @@ export const Context = React.createContext({
     build: '',
     branch: '',
     sync: '',
+    addedBuilds: ''
 });

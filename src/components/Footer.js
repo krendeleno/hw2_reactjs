@@ -1,17 +1,16 @@
 import './css/Footer.css';
 
-
-function Footer() {
+function Footer({links, copyright}) {
     return (
         <div className="footer">
             <div className="footerContent">
                 <div>
-                    <a href="/">Support</a>
-                    <a href="/">Learning</a>
-                    <a href="/">Русская версия</a>
+                    {links.map((link) => (
+                        <a key={link} href="/">{link}</a>
+                    ))}
                 </div>
                 <div className="credentials">
-                    <p>© 2020 Your name</p>
+                    <p>© 2021 {copyright}</p>
                 </div>
             </div>
         </div>

@@ -1,7 +1,8 @@
-function Input({placeholder, value, name, handleChange, doReset, required}) {
+function Input({placeholder, value, name, handleChange, doReset, required, autofocus}) {
     return (
         <div className="search-wrapper">
             <input
+                ref={autofocus}
                 id={name}
                 type="text"
                 name={name}
