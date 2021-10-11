@@ -10,6 +10,7 @@ button {
     text-decoration: none;
     border: rgba(0, 0, 0, 0) 2px solid;
     height: 100%;
+    font-size: var(--small-text);
 }
 
 .icon {
@@ -30,7 +31,6 @@ button.colored:hover:enabled {
 
 button.default {
     background: var(--default-color);
-    font-size: var(--small-text);
 }
 
 button.colored {
