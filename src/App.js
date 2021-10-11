@@ -45,10 +45,9 @@ function App() {
                             () => (<Configuration changeMeta={changeMeta} title="School CI Server"
                                                   description="A simple app for sync with Github"/>) :
                             () => (<BuildList changeMeta={changeMeta} title="Build history"
-                                              description="Some builds in a list"/>)}/>
+                                              description="Some builds in a list"/>)} />
                         <Route path="/settings" render={() => <Settings changeMeta={changeMeta} title="Settings"
-                                                                        description="Settings for Github sync"/>}>
-                        </Route>
+                                                                        description="Settings for Github sync"/>} />
 
                     </Switch>
                 </div>

@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import Build from './Build.js'
 import {format} from 'date-fns'
 import {ru} from 'date-fns/locale'
@@ -39,7 +39,7 @@ function RandomBuild(branch) {
 
 
 function BuildList({changeMeta, title, description}) {
-    changeMeta(title, description);
+    useEffect(() => changeMeta(title, description), [])
     const dispatch = useDispatch()
     const settings = useSelector(state => state.settingsReducer = {
         github: state.settingsReducer.github,

@@ -30,7 +30,7 @@ function Modal({show, onClose}) {
         return function cleanup() {
             document.body.removeEventListener("keydown", closeEsc)
         }
-    })
+    }, [])
 
     const handleChange = (event) => {
         const name = event.target.name;
@@ -61,7 +61,6 @@ function Modal({show, onClose}) {
             },
             500
         )
-        ;
     }
 
     const doReset = (event) => {

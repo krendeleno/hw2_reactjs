@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import Button from './Button.js'
 import {useHistory} from 'react-router-dom';
 import MaskedInput from 'react-text-mask'
@@ -12,7 +12,7 @@ var mask = function (rawValue) {
 }
 
 function Settings({changeMeta, title, description}) {
-    changeMeta(title, description);
+    useEffect(() => changeMeta(title, description), [])
     const history = useHistory();
     const dispatch = useDispatch();
     const [inputs, setInputs] = useState(false);

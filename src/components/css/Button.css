@@ -10,31 +10,32 @@ button {
     text-decoration: none;
     border: rgba(0, 0, 0, 0) 2px solid;
     height: 100%;
+    font-size: var(--small-text);
 }
 
 .icon {
     padding: 7px 10px;
 }
 
-button:hover {
+button:hover:enabled {
     cursor: pointer;
 }
 
-button.default:hover {
+button.default:hover:enabled {
     background: var(--hover-default-color);
 }
 
-button.colored:hover {
+button.colored:hover:enabled {
     background: var(--hover-action-color);
 }
 
 button.default {
     background: var(--default-color);
-    font-size: var(--small-text);
 }
 
 button.colored {
     background: var(--action-color);
+
 }
 
 button * {
@@ -61,6 +62,5 @@ button:disabled {
 
 .config button, .settingsButtons button {
     padding: 10px 20px;
-    width: fit-content;
 }
 

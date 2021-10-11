@@ -1,10 +1,11 @@
+import {useEffect} from "react";
 import Button from './Button.js'
 import Tools from './icons/Tools.js'
 import {Link} from 'react-router-dom'
 import './css/Configuration.css';
 
 function Configuration({changeMeta, title, description}) {
-    changeMeta(title, description);
+    useEffect(() => changeMeta(title, description), [])
     return (
         <div className="config">
             <div style={{width: "124px"}}>
