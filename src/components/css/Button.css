@@ -20,6 +20,14 @@ button:hover {
     cursor: pointer;
 }
 
+button.default:hover {
+    background: var(--hover-default-color);
+}
+
+button.colored:hover {
+    background: var(--hover-action-color);
+}
+
 button.default {
     background: var(--default-color);
     font-size: var(--small-text);

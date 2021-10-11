@@ -11,7 +11,8 @@ var mask = function (rawValue) {
     return Array(rawValue.length).fill(/\d/);
 }
 
-function Settings() {
+function Settings({changeMeta, title, description}) {
+    changeMeta(title, description);
     const history = useHistory();
     const dispatch = useDispatch();
     const [inputs, setInputs] = useState(false);
@@ -84,7 +85,7 @@ function Settings() {
                     <MaskedInput
                         mask={mask}
                         id="sync"
-                        type="search"
+                        type="text"
                         name="sync"
                         value={inputs.sync || ""}
                         onChange={handleChange}

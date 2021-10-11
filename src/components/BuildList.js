@@ -38,7 +38,8 @@ function RandomBuild(branch) {
 }
 
 
-function BuildList() {
+function BuildList({changeMeta, title, description}) {
+    changeMeta(title, description);
     const dispatch = useDispatch()
     const settings = useSelector(state => state.settingsReducer = {
         github: state.settingsReducer.github,

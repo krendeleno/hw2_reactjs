@@ -24,6 +24,8 @@ code {
     --disabled-color: #F2F2F2;
     --border-color: #B38F00;
     --border-default-color: #B3B3B3;
+    --hover-action-color: #F2C200;
+    --hover-default-color: #DBDBDB;
     --small-text: 13px;
     --middle-text: 15px;
     --big-middle-text: 18px;
@@ -62,7 +64,7 @@ a:hover {
     opacity: .2;
 }
 
-@media (max-width: 320px) {
+@media (max-width: 824px) {
     .wrapper {
         width: auto;
     }
