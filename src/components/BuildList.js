@@ -49,8 +49,10 @@ function BuildList({changeMeta, title, description}) {
     })
 
     const buildList = useSelector(state => state.buildsReducer)
-    if (!buildList.length)
-        dispatch(add(generateBuilds(20)))
+    useEffect(() => {
+        if (!buildList.length)
+            dispatch(add(generateBuilds(20)))
+    }, [])
 
     function generateBuilds(n) {
         let res = [];
