@@ -51,7 +51,8 @@ function Build({status, branch, author, hash, message, time, date, number}) {
             <div className="buildDetails">
                 <div className="buildDate">
                     <Calendar style={{width: "16px"}}/>
-                    <p title={format(date, 'dd/MM/yyyy, p', {locale: ru})}>{format(date, 'd LLL, p', {locale: ru})}</p>
+                    <p title={format(date, 'dd/MM/yyyy, p', {locale: ru})}>
+                        {format(date, 'd LLL, p', {locale: ru})}</p>
                 </div>
                 <div className="buildTime">
                     <Time style={{width: "16px"}}/>

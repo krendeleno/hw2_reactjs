@@ -24,7 +24,7 @@ function Modal({show, onClose}) {
     // Следующие  2 функции нужны, чтобы модалка закрывалась на Esc
     const closeEsc = (event) => {
         if (event.charCode || event.keyCode === 27) {
-            setTimeout(onClose, 0);
+            onClose();
         }
     }
 
