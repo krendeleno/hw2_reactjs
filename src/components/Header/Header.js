@@ -1,10 +1,10 @@
 import {useState} from 'react';
-import Button from './Button.js'
-import Settings from './icons/Settings.js'
-import Play from './icons/12Play.js'
+import Button from '../Button/Button.js'
+import Settings from '../icons/Settings.js'
+import Play from '../icons/12Play.js'
 import {Link, Route, Switch} from 'react-router-dom'
-import Modal from './Modal.js'
-import './css/Header.css';
+import Modal from '../Modal/Modal.js'
+import './Header.css';
 import {useSelector} from "react-redux";
 
 

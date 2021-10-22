@@ -1,4 +1,6 @@
-
+.modalContent *{
+    margin:0;
+}
 .modal {
     position: fixed;
     left: 0;

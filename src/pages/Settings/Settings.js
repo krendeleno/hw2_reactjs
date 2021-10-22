@@ -1,21 +1,27 @@
-import {useState, useEffect} from 'react';
-import Button from './Button.js'
+import {useState} from 'react';
+import Button from '../../components/Button/Button.js'
 import {useHistory} from 'react-router-dom';
 import MaskedInput from 'react-text-mask'
-import './css/Settings.css';
-import Input from './Input.js'
-import {set, clearAll} from '../actions'
-import {useDispatch} from "react-redux";
+import './Settings.css';
+import Input from '../../components/Input/Input.js'
+import {set, clearAll} from '../../actions'
+import {useDispatch, useSelector} from "react-redux";
+import {Helmet} from "react-helmet";
 
-var mask = function (rawValue) {
+let mask = function (rawValue) {
     return Array(rawValue.length).fill(/\d/);
 }
 
-function Settings({changeMeta, title, description}) {
-    useEffect(() => changeMeta(title, description), [])
+function Settings({title, description}) {
+    const settings = useSelector(state => state.settingsReducer = {
+        github: state.settingsReducer.github,
+        build: state.settingsReducer.build,
+        branch: state.settingsReducer.branch,
+        sync: state.settingsReducer.sync
+    })
     const history = useHistory();
     const dispatch = useDispatch();
-    const [inputs, setInputs] = useState(false);
+    const [inputs, setInputs] = useState(settings);
     const [disabled, setDisabled] = useState(false);
     const [error, setError] = useState(false);
 
@@ -30,9 +36,11 @@ function Settings({changeMeta, title, description}) {
         setError(false);
         setDisabled(true);
 
+        if (settings.branch !== inputs.branch || settings.github !== inputs.github)
+            // Я отчищаю список билдов, чтобы при вводе новых настроек они генерировались заново,
+            // если новый репозиторий или ветка
+            dispatch(clearAll())
         dispatch(set(inputs));
-        // Я отчищаю список билдов, чтобы при вводе новых настроек они генерировались заново
-        dispatch(clearAll())
 
         // Имитация клонирования, поэтому задержка
         try {
@@ -47,12 +55,6 @@ function Settings({changeMeta, title, description}) {
     }
 
     const doCancel = () => {
-        setInputs({
-            github: '',
-            build: '',
-            branch: '',
-            sync: '',
-        })
         history.push('/');
     }
 
@@ -65,21 +67,25 @@ function Settings({changeMeta, title, description}) {
     // что по смыслу задания этого достаточно, а для числовой формы react-text-mask
     return (
         <div className="forms">
+            <Helmet>
+                <title>{title}</title>
+                <meta name="description" content={description}/>
+            </Helmet>
             <p className="titleSettings">Settings</p>
             <p className="description">Configure repository connection and synchronisation settings.</p>
 
             <form onSubmit={handleSubmit}>
                 <label htmlFor="github" className="required">Github repository</label>
                 <Input handleChange={handleChange} doReset={doReset} name="github" value={inputs.github}
-                       placeholder="user-name/repo-name" required={true}/>
+                       placeholder="user-name/repo-name" required={true} pattern="[A-Za-z0-9-_]+\/[A-Za-z0-9-_]+"/>
 
                 <label htmlFor="build" className="required">Build command</label>
                 <Input handleChange={handleChange} doReset={doReset} name="build" value={inputs.build}
-                       placeholder="Build command" required={true}/>
+                       placeholder="npm run start" required={true}/>
 
                 <label htmlFor="branch">Main branch</label>
                 <Input handleChange={handleChange} doReset={doReset} name="branch" value={inputs.branch}
-                       placeholder="Branch name" required={false}/>
+                       placeholder="master" required={false}/>
 
                 <label htmlFor="sync">Synchronize every
                     <MaskedInput

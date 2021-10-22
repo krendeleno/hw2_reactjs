@@ -8,7 +8,12 @@ input {
     border: #D9D9D9 2px solid;
     padding: 7px;
     box-sizing: border-box;
-    width: calc(100% - 1.6px);
+    width: 100%;
+}
+
+input:focus {
+    border: #B3B3B3 2px solid;
+    outline: none;
 }
 
 .settingsButtons {
@@ -53,9 +58,12 @@ input[name = "sync"] {
     margin-top: 0.3rem;
 }
 
-.search-box,.close-icon,.search-wrapper {
+.search-box,.search-wrapper {
     position: relative;
+}
 
+.close-icon {
+    position: absolute;
 }
 button[type="reset"] {
     padding: 0;

@@ -1,4 +1,4 @@
-import './css/Button.css';
+import './Button.css';
 
 
 function Button({buttonType, children, action, disabled, show}) {
