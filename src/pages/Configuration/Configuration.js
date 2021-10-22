@@ -1,13 +1,16 @@
-import Button from './Button.js'
-import Tools from './icons/Tools.js'
+import Button from '../../components/Button/Button.js'
+import Tools from '../../components/icons/Tools.js'
 import {Link} from 'react-router-dom'
-import './css/Configuration.css';
-import {useEffect} from "react";
+import './Configuration.css';
+import {Helmet} from "react-helmet";
 
-function Configuration({changeMeta, title, description}) {
-    useEffect(() => changeMeta(title, description), [])
+function Configuration({title, description}) {
     return (
         <div className="config">
+            <Helmet>
+                <title>{title}</title>
+                <meta name="description" content={description} />
+            </Helmet>
             <div style={{width: "124px"}}>
                 <Tools/>
             </div>

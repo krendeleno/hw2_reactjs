@@ -1,11 +1,13 @@
-import Fail from './icons/Fail.js'
-import Success from './icons/Success.js'
-import Time from './icons/Time.js'
-import Clock from './icons/Clock.js'
-import Calendar from './icons/Calendar.js'
-import User from './icons/User.js'
-import Commit from './icons/Commit.js'
-import './css/Build.css';
+import Fail from '../icons/Fail.js'
+import Success from '../icons/Success.js'
+import Time from '../icons/Time.js'
+import Clock from '../icons/Clock.js'
+import Calendar from '../icons/Calendar.js'
+import User from '../icons/User.js'
+import Commit from '../icons/Commit.js'
+import './Build.css';
+import {format} from "date-fns";
+import {ru} from "date-fns/locale";
 
 
 function Build({status, branch, author, hash, message, time, date, number}) {
@@ -49,7 +51,8 @@ function Build({status, branch, author, hash, message, time, date, number}) {
             <div className="buildDetails">
                 <div className="buildDate">
                     <Calendar style={{width: "16px"}}/>
-                    <p>{date}</p>
+                    <p title={format(date, 'dd/MM/yyyy, p', {locale: ru})}>
+                        {format(date, 'd LLL, p', {locale: ru})}</p>
                 </div>
                 <div className="buildTime">
                     <Time style={{width: "16px"}}/>

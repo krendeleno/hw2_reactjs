@@ -1,11 +1,11 @@
 import {useContext, useState} from 'react';
-import Button from './Button.js'
-import Settings from './icons/Settings.js'
-import Play from './icons/12Play.js'
+import Button from '../Button/Button.js'
+import Settings from '../icons/Settings.js'
+import Play from '../icons/12Play.js'
 import {Link, Route, Switch} from 'react-router-dom'
-import {Context} from "./GithubContext.js"
-import Modal from './Modal.js'
-import './css/Header.css';
+import {Context} from "../GithubContext.js"
+import Modal from '../Modal/Modal.js'
+import './Header.css';
 
 
 function Header() {
