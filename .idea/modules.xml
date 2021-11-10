@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/hw2_reactjs.iml" filepath="$PROJECT_DIR$/.idea/hw2_reactjs.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../hw2_copy/hw2_reactjs/.idea/hw2_reactjs.iml" filepath="$PROJECT_DIR$/../hw2_copy/hw2_reactjs/.idea/hw2_reactjs.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/hw2_reactjs_redux.iml" filepath="$PROJECT_DIR$/.idea/hw2_reactjs_redux.iml" />
     </modules>
   </component>
 </project>

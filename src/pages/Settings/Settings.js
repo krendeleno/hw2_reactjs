@@ -13,12 +13,7 @@ let mask = function (rawValue) {
 }
 
 function Settings({title, description}) {
-    const settings = useSelector(state => state.settingsReducer = {
-        github: state.settingsReducer.github,
-        build: state.settingsReducer.build,
-        branch: state.settingsReducer.branch,
-        sync: state.settingsReducer.sync
-    })
+    const settings = useSelector(state => state.settingsReducer)
     const history = useHistory();
     const dispatch = useDispatch();
     const [inputs, setInputs] = useState(settings);

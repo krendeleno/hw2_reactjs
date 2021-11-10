@@ -7,16 +7,12 @@ import {add} from "../../actions";
 import {RandomBuild} from "../../randomBuildGenerator";
 import {createPortal} from 'react-dom'
 import FocusLock from 'react-focus-lock';
+import React from 'react';
 
 
 function Modal({show, onClose}) {
     const dispatch = useDispatch();
-    const settings = useSelector(state => state.settingsReducer = {
-        github: state.settingsReducer.github,
-        build: state.settingsReducer.build,
-        branch: state.settingsReducer.branch,
-        sync: state.settingsReducer.sync
-    })
+    const settings = useSelector(state => state.settingsReducer)
     const [disabled, setDisabled] = useState(false);
     const [inputs, setInputs] = useState({hash: ''})
 
@@ -44,6 +40,7 @@ function Modal({show, onClose}) {
     const handleSubmit = (event) => {
         event.preventDefault();
         setDisabled(true);
+        setInputs({hash: ''});
         dispatch(add(new RandomBuild(settings.branch, new Date(), inputs.hash)));
         setDisabled(false);
         onClose();
@@ -83,4 +80,4 @@ function Modal({show, onClose}) {
         , document.body)
 }
 
-export default Modal;
+export default React.memo(Modal);

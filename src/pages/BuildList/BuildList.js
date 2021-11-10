@@ -1,21 +1,16 @@
 import {useState, useEffect} from 'react';
 import Build from '../../components/Build/Build.js'
-import Button from '../../components/Button/Button.js'
 import '../../components/Build/Build.css';
 import {add} from '../../actions';
 import {useSelector, useDispatch} from "react-redux";
 import {RandomBuild} from '../../randomBuildGenerator'
 import {Helmet} from "react-helmet";
+import ShowMoreButton from "../../components/Button/ShowMoreButton";
 
 
 function BuildList({title, description}) {
     const dispatch = useDispatch()
-    const settings = useSelector(state => state.settingsReducer = {
-        github: state.settingsReducer.github,
-        build: state.settingsReducer.build,
-        branch: state.settingsReducer.branch,
-        sync: state.settingsReducer.sync
-    })
+    const settings = useSelector(state => state.settingsReducer)
 
     const buildList = useSelector(state => state.buildsReducer)
     useEffect(() => {
@@ -31,17 +26,6 @@ function BuildList({title, description}) {
     }
 
     const [showMore, setShowMore] = useState(false);
-
-
-    const showMoreButtons = <>
-        <Button buttonType="default" action={() => setShowMore(true)} show={!showMore}>
-            <p>Show more</p>
-        </Button>
-
-        <Button buttonType="default" action={() => setShowMore(false)} show={showMore}>
-            <p>Show less</p>
-        </Button>
-    </>
 
     // Эта констата отвечает за то, сколько элементов показать изначально, если их много, тк в макете есть кнопка
     // Show more, но если элементов не очень много, то кнопка не появится
@@ -68,7 +52,7 @@ function BuildList({title, description}) {
                 </div>
             ))}
             {amountToShow < buildList.length ?
-                showMoreButtons
+                <ShowMoreButton showMore = {showMore} setShowMore = {setShowMore} />
                 : <></>
             }
         </div>

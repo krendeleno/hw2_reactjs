@@ -1,4 +1,5 @@
 import './Footer.css';
+import React from 'react';
 
 function Footer({links, copyright}) {
     return (
@@ -17,4 +18,4 @@ function Footer({links, copyright}) {
     )
 }
 
-export default Footer;
+export default React.memo(Footer);

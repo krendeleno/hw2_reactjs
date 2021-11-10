@@ -1,35 +1,20 @@
-import Fail from '../icons/Fail.js'
-import Success from '../icons/Success.js'
 import Time from '../icons/Time.js'
-import Clock from '../icons/Clock.js'
 import Calendar from '../icons/Calendar.js'
 import User from '../icons/User.js'
 import Commit from '../icons/Commit.js'
 import './Build.css';
 import {format} from "date-fns";
 import {ru} from "date-fns/locale";
+import React from 'react';
+import RenderSwitch from "./RenderSwitch";
 
 
 function Build({status, branch, author, hash, message, time, date, number}) {
     const numberClassName = ["buildNumber", status]
 
-    // Выбор нужной иконки
-    function renderSwitch(status) {
-        switch (status) {
-            case 'success':
-                return <Success style={{width: "24px"}}/>;
-            case 'fail':
-                return <Fail style={{width: "24px"}}/>;
-            case 'process':
-                return <Clock style={{width: "24px"}}/>;
-            default:
-                return null;
-        }
-    }
-
     return (
         <>
-            {renderSwitch(status)}
+            <RenderSwitch status={status}/>
             <div className="buildInfo">
                 <div className="buildUpInfo">
                     <p className={numberClassName.join(' ')}>#{number}</p>
@@ -63,4 +48,4 @@ function Build({status, branch, author, hash, message, time, date, number}) {
     )
 }
 
-export default Build;
+export default React.memo(Build);
