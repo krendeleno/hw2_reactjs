@@ -21,11 +21,11 @@ function Settings({title, description}) {
     const [disabled, setDisabled] = useState(false);
     const [error, setError] = useState(false);
 
-    const handleChange = (event) => {
+    const handleChange = useCallback((event) => {
         const name = event.target.name;
         const value = event.target.value;
         setInputs(values => ({...values, [name]: value}))
-    }
+    }, []);
 
     const handleSubmit = (event) => {
         event.preventDefault();

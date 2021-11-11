@@ -1,11 +1,15 @@
 import {Link} from "react-router-dom";
-import React from 'react';
+import React, {useCallback} from 'react';
 import Button from "../Button/Button";
 import Settings from "../icons/Settings";
 import Play from "../icons/12Play";
 import Modal from "../Modal/Modal";
 
 const HeaderSettings = ({show, setShow, github}) => {
+    const close = useCallback(() => {
+        setShow(false);
+    }, []);
+
     return(
         <>
             <p className="githubRepo">{github}</p>
@@ -20,7 +24,7 @@ const HeaderSettings = ({show, setShow, github}) => {
                     </Button>
                 </Link>
             </div>
-            <Modal show={show} onClose={() => setShow(false)} onSubmit={() => setShow(false)}/>
+            <Modal show={show} onClose={close} onSubmit={close}/>
         </>
     )
 }
