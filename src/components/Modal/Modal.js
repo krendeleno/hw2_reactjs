@@ -2,17 +2,18 @@ import {useState, useEffect} from 'react';
 import Button from '../Button/Button.js'
 import Input from '../Input/Input.js'
 import './Modal.css';
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import {add} from "../../actions";
 import {RandomBuild} from "../../randomBuildGenerator";
 import {createPortal} from 'react-dom'
 import FocusLock from 'react-focus-lock';
 import React from 'react';
+import useSettings from "../../hooks/useSettings";
 
 
 function Modal({show, onClose}) {
     const dispatch = useDispatch();
-    const settings = useSelector(state => state.settingsReducer)
+    const settings = useSettings();
     const [disabled, setDisabled] = useState(false);
     const [inputs, setInputs] = useState({hash: ''})
 

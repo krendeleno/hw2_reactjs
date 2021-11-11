@@ -6,16 +6,17 @@ import {useSelector, useDispatch} from "react-redux";
 import {RandomBuild} from '../../randomBuildGenerator'
 import {Helmet} from "react-helmet";
 import ShowMoreButton from "../../components/Button/ShowMoreButton";
+import useSettings from "../../hooks/useSettings";
 
 
 function BuildList({title, description}) {
     const dispatch = useDispatch()
-    const settings = useSelector(state => state.settingsReducer)
+    const settings = useSettings();
 
-    const buildList = useSelector(state => state.buildsReducer)
+    const buildList = useSelector(state => state.buildsReducer);
     useEffect(() => {
         if (!buildList.length)
-            dispatch(add(generateBuilds(20)))
+            dispatch(add(generateBuilds(20)));
     }, [])
 
     function generateBuilds(n) {

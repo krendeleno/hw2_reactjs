@@ -1,14 +1,14 @@
 import React, {useState} from 'react';
 import {Route, Switch} from 'react-router-dom'
 import './Header.css';
-import {useSelector} from "react-redux";
 import HeaderDefault from "./HeaderDefault";
 import HeaderSettings from "./HeaderSettings";
+import useSettings from "../../hooks/useSettings";
 
 
 function Header() {
     const [show, setShow] = useState(false);
-    const settings = useSelector(state => state.settingsReducer)
+    const settings = useSettings();
 
     return (
         <header>

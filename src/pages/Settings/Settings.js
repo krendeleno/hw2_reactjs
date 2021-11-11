@@ -5,15 +5,16 @@ import MaskedInput from 'react-text-mask'
 import './Settings.css';
 import Input from '../../components/Input/Input.js'
 import {set, clearAll} from '../../actions'
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import {Helmet} from "react-helmet";
+import useSettings from "../../hooks/useSettings";
 
 let mask = function (rawValue) {
     return Array(rawValue.length).fill(/\d/);
 }
 
 function Settings({title, description}) {
-    const settings = useSelector(state => state.settingsReducer)
+    const settings = useSettings();
     const history = useHistory();
     const dispatch = useDispatch();
     const [inputs, setInputs] = useState(settings);
