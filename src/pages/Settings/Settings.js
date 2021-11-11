@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useCallback, useState} from 'react';
 import Button from '../../components/Button/Button.js'
 import {useHistory} from 'react-router-dom';
 import MaskedInput from 'react-text-mask'
@@ -53,10 +53,10 @@ function Settings({title, description}) {
         history.push('/');
     }
 
-    const doReset = (event) => {
+    const doReset = useCallback((event) => {
         const name = event.target.name;
         setInputs(values => ({...values, [name]: ''}));
-    }
+    }, []);
 
     // Для валидации форм я использую required, т.к. сейчас он поддерживается во всех браузерах и мне показалось,
     // что по смыслу задания этого достаточно, а для числовой формы react-text-mask
