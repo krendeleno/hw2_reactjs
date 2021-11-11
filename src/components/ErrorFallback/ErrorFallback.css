@@ -1,0 +1,12 @@
+div[role="alert"] {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    height: 100%;
+}
+
+div[role="alert"] button{
+    height: auto;
+}
